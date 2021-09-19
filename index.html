@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <title>視差效果</title>
+    <style>
+        body {
+            height: 200vh;
+            background: black;
+            overflow-x: hidden;
+        }
+    
+        img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <section id="bg" class="position-fixed" style="z-index:-1">
+        <div style="width:130%;height:130%">
+            <div class="position-absolute w-100 h-100" style="background:rgba(0,0,0,0.5)"></div>
+            <img class="w-100" src="./images/nebula.jpg" alt="">
+        </div>
+    </section>
+
+    <script src="./js/jquery-3.6.0.min.js.css"></script>
+    <script src="./js/bootstrap.bundle.js"></script>
+    <!-- GSAP 主程式 -->
+    <script src="./gsap/gsap.js"></script>
+    <!-- GSAP's Plugins -->
+    <script src="./gsap/ScrollTrigger.js"></script>
+    <script>
+        // 註冊套件
+        gsap.registerPlugin(ScrollTrigger)
+
+        // 視差 parallax
+        gsap.to('#bg', {
+        scrollTrigger: {
+            trigger: 'body', // 觸發條件
+            start: '0% 0%', // 觸發條件開始點
+            end: 'bottom bottom', // 觸發條件結束點
+            scrub: 1, // 延遲速度
+            markers: false // 標記器
+        },
+        yPercent: -20, // y 軸視差的程度
+        ease: 'none' // 轉場動畫
+        })
+    </script>
+</body>
+</html>
